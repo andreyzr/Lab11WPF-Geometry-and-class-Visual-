@@ -1,0 +1,63 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="400">
+    <Window.Resources>
+        <RectangleGeometry x:Key="rect"
+                           Rect="0 0 100 70"/>
+        <EllipseGeometry x:Key="ellipse"
+                         Center="85 50"
+                         RadiusX="40"
+                         RadiusY="40"/>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Veradana"/>
+        </Style>
+        <Style TargetType="Path">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Fill" Value="Green"/>
+            <Setter Property="Stroke" Value="Black"/>
+        </Style>
+    </Window.Resources>
+    <UniformGrid Rows="4" Columns="2">
+        <Path>
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Union" 
+                                  Geometry1="{StaticResource rect}" 
+                                  Geometry2="{StaticResource ellipse}"/>
+            </Path.Data>
+        </Path>
+        <TextBlock Grid.Row="0" Grid.Column="1">Unoion</TextBlock>
+
+        <Path>
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Intersect"
+                                  Geometry1="{StaticResource rect}"
+                                  Geometry2="{StaticResource ellipse}"/>
+            </Path.Data>
+        </Path>
+        <TextBlock Grid.Row="1" Grid.Column="1">Intersect</TextBlock>
+        
+        <Path>
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Xor"
+                                  Geometry1="{StaticResource rect}"
+                                  Geometry2="{StaticResource ellipse}"/>
+            </Path.Data>
+        </Path>
+        <TextBlock Grid.Row="1" Grid.Column="1">Xor</TextBlock>
+
+        <Path>
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Exclude"
+                                  Geometry1="{StaticResource rect}"
+                                  Geometry2="{StaticResource ellipse}"/>
+            </Path.Data>
+        </Path>
+        <TextBlock Grid.Row="1" Grid.Column="1">Exclude</TextBlock>
+    </UniformGrid>
+</Window>
